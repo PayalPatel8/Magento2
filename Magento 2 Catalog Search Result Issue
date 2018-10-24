@@ -1,0 +1,9 @@
+When I search for any string in Magento2 then there is result page showing blank. I got the exception.log file.
+
+"main.CRITICAL: SQLSTATE[HY000]: General error: 1191 Can't find FULLTEXT index matching the column list, query was: SELECT search_synonyms.* FROM search_synonyms WHERE (MATCH (synonyms) AGAINST ('9898' IN BOOLEAN MODE)) {"exception":"[object] (Zend_Db_Statement_Exception(code: 0): SQLSTATE[HY000]: General error: 1191 Can't find FULLTEXT index matching the column list, query was: SELECT search_synonyms.* FROM search_synonyms WHERE (MATCH (synonyms) AGAINST ('9898' IN BOOLEAN MODE)) at /opt/lampp/htdocs/magento223/vendor/magento/zendframework1/library/Zend/Db/Statement/Pdo.php:235, PDOException(code: HY000): SQLSTATE[HY000]: General error: 1191 Can't find FULLTEXT index matching the column list at /opt/lampp/htdocs/magento223/vendor/magento/zendframework1/library/Zend/Db/Statement/Pdo.php:228)"} [] "
+
+And i found below solution.
+
+Give query in database table: search_synonyms
+
+ALTER TABLE search_synonyms ADD FULLTEXT(synonyms);
